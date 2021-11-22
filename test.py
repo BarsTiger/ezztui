@@ -52,5 +52,6 @@ menu = {
          "Back": 'ezztui_back_value'}
 }
 
-print(ezztui.menu(menu))
-input()
+while True:
+    print(ezztui.menu(menu))
+    input()
