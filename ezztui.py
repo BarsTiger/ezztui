@@ -18,17 +18,6 @@ def cls():
 def softcls():
     print("\n" * (os.get_terminal_size().lines * 2))
 
-def print_center(text: str):
-    def glstdscr(stdscr):
-        return stdscr
-    stdscr = curses.wrapper(glstdscr)
-    stdscr.clear()
-    h, w = stdscr.getmaxyx()
-    x = w//2 - len(text)//2
-    y = h//2
-    stdscr.addstr(y, x, text)
-    stdscr.refresh()
-
 def center_message(text: str):
     print("\n" * (os.get_terminal_size().lines // 2 - 2))
     print(" " * ((os.get_terminal_size().columns//2 - (len(text)//2)) - 1) + text)

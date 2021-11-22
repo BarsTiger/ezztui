@@ -1,5 +1,37 @@
-## Usage
+# Requires
+Curses, on Linux pre-installed, on windows you need windows-curses, so you can install it with `pip install windows-curses` \
+Or just add to your code:
+```python
+import ezztui
+ezztui.check_curses()
+```
 
+# Use
+```
+Up-Down Arrow Keys: Move cursor 
+Enter: Choose current option 
+Backspace: Go back 
+```
+
+# Coding
+
+## Print text on center of console
+```python
+import ezztui
+ezztui.check_curses() # check and install windows-curses, if on windows
+ezztui.center_message("Hello World!") # prints "Hello World!" on the center of the console
+ezztui.center_multiline(["Hello", "multiline", "world!"]) # prints "Hello" on the center of the console, then "multiline" on the next line, then "world!" on the next line
+```
+
+## Clear console
+```python
+import ezztui
+ezztui.check_curses() # check and install windows-curses, if on windows
+ezztui.cls() # clears the console with a os.system command
+ezztui.softcls() # clears the console with a multiple newline
+```
+## Menu
+### Usage
 ```python
 import ezztui
 ezztui.check_curses() # check and install windows-curses, if on windows
@@ -51,9 +83,11 @@ menu = {
          "Back": 'ezztui_back_value'}
 }
 
+print(ezztui.menu(menu)) # prints the menu and returns name of function and path to it in menu, 
+                         # You can process this value in your program or add while True (or something else)
 ```
 
-## Returns
+### Returns
 ```
 ['Second menu', 'Submenu 2', 'Function 3']
 ```
