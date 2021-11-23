@@ -9,6 +9,5 @@ setup(
   scripts=["ezztui"],
   author="BarsTiger",
   description="Easy TextUI creating package",
-  long_description=long_description,
-
+  long_description=long_description
 )
