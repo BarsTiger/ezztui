@@ -13,5 +13,5 @@ setup(
   py_modules=["ezztui"],
   license='MIT',
   url='https://github.com/BarsTiger/ezztui',
-
+  long_description_content_type="text/markdown"
 )
