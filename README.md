@@ -3,7 +3,7 @@ Curses, on Linux pre-installed, on windows you need windows-curses, so you can i
 Or just add to your code:
 ```python
 import ezztui
-ezztui.check_curses()
+ezztui.check_curses() # not needed if you are using ezztui 2.0.0 or later, it will check for curses automatically
 ```
 
 # Use
@@ -18,7 +18,6 @@ Backspace: Go back
 ## Print text on center of console
 ```python
 import ezztui
-ezztui.check_curses() # check and install windows-curses, if on windows
 ezztui.center_message("Hello World!") # prints "Hello World!" on the center of the console
 ezztui.center_multiline(["Hello", "multiline", "world!"]) # prints "Hello" on the center of the console, then "multiline" on the next line, then "world!" on the next line
 ```
@@ -26,7 +25,6 @@ ezztui.center_multiline(["Hello", "multiline", "world!"]) # prints "Hello" on th
 ## Clear console
 ```python
 import ezztui
-ezztui.check_curses() # check and install windows-curses, if on windows
 ezztui.cls() # clears the console with a os.system command
 ezztui.softcls() # clears the console with a multiple newline
 ```
@@ -34,15 +32,14 @@ ezztui.softcls() # clears the console with a multiple newline
 ### Usage
 ```python
 import ezztui
-ezztui.check_curses() # check and install windows-curses, if on windows
 menu = {
     'First menu':
-        {'Function 1': 'ezztui_return_value',
+        {'Function 1': 'ezztui_return_value', # use 'return' also from 2.0.0
          'Function 2': 'ezztui_return_value',
          'Function 3': 'ezztui_return_value',
          'Function 4': 'ezztui_return_value',
          'Function 5': 'ezztui_return_value',
-         'Back': 'ezztui_back_value'},
+         'Back': 'ezztui_back_value'}, # use 'back' also from 2.0.0
 
     'Second menu':
         {'Submenu 1': {
@@ -80,7 +77,7 @@ menu = {
 
     'Exit':
         {"Exit": 'ezztui_exit_value',
-         "Back": 'ezztui_back_value'}
+         "Back": 'ezztui_back_value'} # use 'exit' also from 2.0.0
 }
 
 print(ezztui.menu(menu)) # prints the menu and returns name of function and path to it in menu, 

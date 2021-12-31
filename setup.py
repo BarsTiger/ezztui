@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
   name="ezztui",
-  version="1.0.0",
+  version="2.0.0",
   scripts=["ezztui.py"],
   author="BarsTiger",
   description="Easy TextUI creating package",

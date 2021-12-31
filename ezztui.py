@@ -85,12 +85,12 @@ def menu(menulist: dict):
                 currentmenu = currentmenu[list(currentmenu.keys())[current_row]]
                 break
 
-            elif key == curses.KEY_ENTER or key in [10, 13] and currentmenu[list(currentmenu.keys())[current_row]] == 'ezztui_return_value':
+            elif key == curses.KEY_ENTER or key in [10, 13] and currentmenu[list(currentmenu.keys())[current_row]] in ['ezztui_return_value', 'return']:
                 menupath.append(list(currentmenu)[current_row])
                 returning = menupath
                 break
 
-            elif key == curses.KEY_BACKSPACE or str(key) in ['KEY_BACKSPACE', '8', '127'] or currentmenu[list(currentmenu.keys())[current_row]] == 'ezztui_back_value':
+            elif key == curses.KEY_BACKSPACE or str(key) in ['KEY_BACKSPACE', '8', '127'] or currentmenu[list(currentmenu.keys())[current_row]] in ['ezztui_back_value', 'back']:
                 menupath = menupath[:-1:]
                 try:
                     currentmenu = menulist[list(menupath)[0]]
@@ -101,7 +101,7 @@ def menu(menulist: dict):
                 mainmenu(stdscr)
                 break
 
-            elif key == curses.KEY_ENTER or key in [10, 13] and currentmenu[list(currentmenu.keys())[current_row]] == 'ezztui_exit_value':
+            elif key == curses.KEY_ENTER or key in [10, 13] and currentmenu[list(currentmenu.keys())[current_row]] in ['ezztui_exit_value', 'exit']:
                 exit()
 
             print_menu(stdscr, current_row, currentmenu)
