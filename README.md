@@ -35,7 +35,7 @@ import ezztui
 menu = {
     'First menu':
         {'Function 1': 'ezztui_return_value', # use 'return' also from 2.0.0
-         'Function 2': 'ezztui_return_value',
+         'Function 2': 'ezztui_return_value', # specify a function to be called from 4.0.0
          'Function 3': 'ezztui_return_value',
          'Function 4': 'ezztui_return_value',
          'Function 5': 'ezztui_return_value',

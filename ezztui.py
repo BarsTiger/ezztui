@@ -1,6 +1,9 @@
 import os
+
+
 def check_curses():
-    import subprocess, sys
+    import subprocess
+    import sys
     try:
         import curses
     except:
@@ -9,14 +12,17 @@ def check_curses():
 
 try:
     import curses
-except:
+except ImportError:
     check_curses()
+
 
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
 def softcls():
     print("\n" * (os.get_terminal_size().lines * 2))
+
 
 def center_message(text: str):
     print("\n" * (os.get_terminal_size().lines // 2 - 2))
@@ -25,6 +31,7 @@ def center_message(text: str):
     input()
     cls()
 
+
 def center_multiline(text: list):
     print("\n" * ((os.get_terminal_size().lines // 2 - (len(text) // 2)) - 1))
     for line in text:
@@ -32,6 +39,7 @@ def center_multiline(text: list):
     print("\n" * ((os.get_terminal_size().lines // 2 - (len(text) // 2)) - 2))
     input()
     cls()
+
 
 def menu(menulist: dict):
     def print_menu(stdscr, selected_row_idx, menu):
@@ -80,17 +88,14 @@ def menu(menulist: dict):
             elif key == curses.KEY_DOWN and current_row == len(currentmenu) - 1:
                 current_row = 0
 
-            elif key == curses.KEY_ENTER or key in [10, 13] and isinstance(currentmenu[list(currentmenu.keys())[current_row]], dict):
+            elif key == curses.KEY_ENTER or key in [10, 13] and \
+                    isinstance(currentmenu[list(currentmenu.keys())[current_row]], dict):
                 menupath.append(list(currentmenu)[current_row])
                 currentmenu = currentmenu[list(currentmenu.keys())[current_row]]
                 break
 
-            elif key == curses.KEY_ENTER or key in [10, 13] and currentmenu[list(currentmenu.keys())[current_row]] in ['ezztui_return_value', 'return']:
-                menupath.append(list(currentmenu)[current_row])
-                returning = menupath
-                break
-
-            elif key == curses.KEY_BACKSPACE or str(key) in ['KEY_BACKSPACE', '8', '127'] or currentmenu[list(currentmenu.keys())[current_row]] in ['ezztui_back_value', 'back']:
+            elif key == curses.KEY_BACKSPACE or str(key) in ['KEY_BACKSPACE', '8', '127'] or \
+                    currentmenu[list(currentmenu.keys())[current_row]] in ['ezztui_back_value', 'back']:
                 menupath = menupath[:-1:]
                 try:
                     currentmenu = menulist[list(menupath)[0]]
@@ -101,8 +106,17 @@ def menu(menulist: dict):
                 mainmenu(stdscr)
                 break
 
-            elif key == curses.KEY_ENTER or key in [10, 13] and currentmenu[list(currentmenu.keys())[current_row]] in ['ezztui_exit_value', 'exit']:
+            elif key == curses.KEY_ENTER or key in [10, 13] and currentmenu[list(currentmenu.keys())[current_row]] in \
+                    ['ezztui_exit_value', 'exit']:
                 exit()
+
+            elif key == curses.KEY_ENTER or key in [10, 13]:
+                menupath.append(list(currentmenu)[current_row])
+                try:
+                    returning = currentmenu[list(currentmenu.keys())[current_row]]()
+                except TypeError:
+                    returning = menupath
+                break
 
             print_menu(stdscr, current_row, currentmenu)
 
